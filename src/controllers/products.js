@@ -34,6 +34,34 @@ async function post(req, res) {
     })
 
 }
+
+async function put(req, res) {
+    const { id } = req.params
+
+    const product = await ProductsModel.findOneAndUpdate({ _id:id }, req.body, {new: true})
+
+    res.send({
+        message: 'success',
+        product,
+    })
+
+   /* const product = await ProductsModel.findOne({_id: id})
+
+    product.name = ''
+    product.price = 1213
+
+    await product.updateOne(req.body)
+
+    res.send({
+        message: 'sucess',
+        product,
+    }) */
+
+
+
+}
 module.exports = {
     get,
+    post,
+    put,
 }
